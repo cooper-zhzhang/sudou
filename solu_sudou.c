@@ -6,18 +6,17 @@ int bo(int (*a)[9], int x, int y, int b)
 	int j;
 	for(j = 0; j < 9; ++j)
 	 {
-		 if(j == x)
-			 continue;
+		 if(j != x)
+		{
 			if(b == a[j][y])
 				return 0;
-	}
+		}
 
-	for(j = 0; j < 9; ++j)
-	{
-		if(j == y)
-			continue;
-		if(b == a[x][j])
-			return 0;
+		if(j != y)
+		{
+			if(b == a[x][j])
+				return 0;
+		}
 	}
 
 	i = x - x % 3;
