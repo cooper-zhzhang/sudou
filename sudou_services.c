@@ -27,10 +27,18 @@ int bo(int (*a)[9], int x, int y, int b)
 	int j;
 	for(j = 0; j < 9; ++j)
 	 {
-		 if(j == x || j == y)
+		 if(j == x)
 			 continue;
-			if(b == a[j][y] || b == a[x][j])
+			if(b == a[j][y])
 				return 0;
+	}
+
+	for(j = 0; j < 9; ++j)
+	{
+		if(j == y)
+			continue;
+		if(b == a[x][j])
+			return 0;
 	}
 
 	i = x - x % 3;
@@ -155,9 +163,20 @@ int main(int argc, char **argv)
 					printf("%ld read error\n", (long)getpid());
 					exit(-1);
 				}
-				memcpy(a, mes, num);
+				//memcpy(a, mes, num);
+				for(int i = 0; i < 81; ++i)
+				{
+					a[i/9][i%9] = ntohs(mes[i]);
+				}
+
 				if(fun(a, 1))
-					memcpy(mes, a, num);
+				{
+				//memcpy(mes, a, num);
+					for(int i = 0; i < 81; ++i)
+					{
+						mes[i] = htons(a[i/9][i%9]);
+					}
+				}
 				if((num = write(clifd, mes, sizeof(int) * MAX_MES)) == -1)
 				{
 					printf("%ld write error\n", (long)getpid());

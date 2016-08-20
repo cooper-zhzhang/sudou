@@ -26,7 +26,10 @@ int main(int argc, char **argv)
 		exit(-1);
 	}
 	for(int i = 0; i < MAX_MES; ++i)
+	{
 		scanf("%d", &mes[i]);
+		mes[i] = htons(mes[i]);
+	}
 	
 
 	if((num = write(clifd, mes, sizeof(int) * MAX_MES)) == -1)
@@ -44,7 +47,7 @@ int main(int argc, char **argv)
 	{
 		for(j = 0; j < 9; ++j)
 		{
-			printf("%2d", mes[i*9+j]);
+			printf("%2d", ntohs(mes[i*9+j]));
 		}
 		printf("\n");
 	}
