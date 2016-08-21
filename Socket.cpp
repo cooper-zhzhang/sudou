@@ -3,6 +3,7 @@
 #include <sys/types.h>
 #include <arpa/inet.h>
 #include <unistd.h>
+#include "Socket.h"
 
 Socket::Socket(int value_domain, int value_type, int value_protocol):domain(value_domain), type(value_type), protocol(value_protocol)
 {

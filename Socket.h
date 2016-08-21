@@ -7,6 +7,7 @@
 class Socket
 {
 private:
+	int fd;
 	int domain;
 	int type;
 	int protocol;
@@ -19,9 +20,9 @@ private:
 
 public:
 	Socket(int value_domain, int value_type, int value_protocol);
-	void Socket::setaddr(sockaddr *value_addr, size_t size);
-	int Socket::setbind();
-	int Socket::getsock();
+	void setaddr(sockaddr *value_addr, size_t size);
+	int setbind();
+	int getsock();
 };
 
 
