@@ -16,13 +16,10 @@ int main(int argc, char **argv)
 	sock.setaddr((struct sockaddr*)&seraddr, sizeof(seraddr));
 	sock.setbind();
 	int fd = sock.getsock();
-//	std::cout << fd << std::endl;
-	if(-1 !=  listen(fd, 5))
+	std::cout << fd << std::endl;
+	if(-1 !=  sock.setlisten())
 		std::cout << "listen success" << std::endl;
-	int clifd;
-	if(-1 != (clifd = accept(fd, NULL, NULL)))
-		std::cout << "accept success" << std::endl;
-	if((num = read(clifd, mes, sizeof(mes))) != -1)
+	if((num = sock.do_read(mes, sizeof(mes))) != -1)
 	{
 		for(int i = 0; i < num/sizeof(int); ++i)
 		std::cout << mes[i] << std::endl;
