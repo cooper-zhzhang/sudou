@@ -23,6 +23,8 @@ public:
 	void setaddr(sockaddr *value_addr, size_t size);
 	int setbind();
 	int getsock();
+	int setlisten(int size = 5);
+	int do_read(int *mes, size_t size);
 };
 
 
