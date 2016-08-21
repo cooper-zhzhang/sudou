@@ -21,7 +21,7 @@ void handle(int sig)
 	while(waitpid(-1, NULL, WNOHANG) > 0);
 }
 
-int bo(int (*a)[9], int x, int y, int b)
+int check(int (*a)[9], int x, int y, int b)
 {
 	int i;
 	int j;
@@ -78,7 +78,7 @@ int fun(int (*a)[9], int count)
 	{
 		for(i = 1; i <= 9; ++i)
 		{
-			if(bo(a, x, y, i))
+			if(check(a, x, y, i))
 			{
 				a[x][y] = i;
 				if(fun(a, count+1))
@@ -130,10 +130,12 @@ int main(int argc, char **argv)
 	sa.sa_handler = handle;
 	if(sigaction(SIGCHLD, &sa, NULL) == -1)
 		exit(-1);
+
 	serfd = socket(AF_INET, SOCK_STREAM, 0);
 	struct sockaddr_in seraddr;
 	seraddr.sin_family = AF_INET;
-	inet_pton(AF_INET, "127.0.0.1", &(seraddr.sin_addr));
+	//inet_pton(AF_INET, "127.0.0.1", &(seraddr.sin_addr));
+	inet_pton(AF_INET, "0.0.0.0", &(seraddr.sin_addr));
 	seraddr.sin_port = htons(PORT);
 	
 	if(bind(serfd, (struct sockaddr *)&seraddr, sizeof(seraddr)) == -1)

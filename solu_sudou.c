@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int bo(int (*a)[9], int x, int y, int b)
+int check(int (*a)[9], int x, int y, int b)
 {
 	int i;
 	int j;
@@ -56,7 +56,7 @@ int fun(int (*a)[9], int count)
 	{
 		for(i = 1; i <= 9; ++i)
 		{
-			if(bo(a, x, y, i))
+			if(check(a, x, y, i))
 			{
 				a[x][y] = i;
 				if(fun(a, count+1))
