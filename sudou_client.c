@@ -28,6 +28,11 @@ int main(int argc, char **argv)
 	for(int i = 0; i < MAX_MES; ++i)
 	{
 		scanf("%d", &mes[i]);
+		if(mes[i] > 9 || mes[i] < 1)
+		{
+			printf("error input\n");
+			break;
+		}
 		mes[i] = htons(mes[i]);
 	}
 	
