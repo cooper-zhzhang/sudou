@@ -37,4 +37,25 @@ int Socket::getsock()
 	return fd;
 }
 
+int Socket::setlisten(int size)
+{
+	return listen(fd, size);
+}
+
+int Socket::do_read(int *mes, size_t size)
+{
+	int clifd = accept(fd, NULL, NULL);
+	if(clifd == -1)
+		return -1;
+	return read(clifd, mes, size);
+}
+
+
+
+
+
+
+
+
+
 
