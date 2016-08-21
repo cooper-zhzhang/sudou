@@ -13,7 +13,12 @@ Socket::Socket(int value_domain, int value_type, int value_protocol):domain(valu
 
 void Socket::setaddr(sockaddr *value_addr, size_t size)
 {
-	memcpy(&addr, value_addr, size);
+	switch(domain)
+	{
+		case AF_UNIX: memcpy(&addr.addr_un, value_addr, size); break;
+		case AF_INET: memcpy(&addr.addr_in, value_addr, size); break;
+		case AF_INET6: memcpy(&addr.addr_in6, value_addr, size); break;
+	}
 }
 
 int Socket::setbind()
