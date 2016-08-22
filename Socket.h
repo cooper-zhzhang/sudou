@@ -1,3 +1,5 @@
+#ifndef SOCKET_H
+#define SOCKET_H
 #include <sys/socket.h>
 #include <sys/un.h>
 #include <sys/types.h>
@@ -27,4 +29,4 @@ public:
 	int do_read(int *mes, size_t size);
 };
 
-
+#endif
