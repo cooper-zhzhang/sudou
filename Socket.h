@@ -15,18 +15,17 @@ private:
 	int protocol;
 	union
 	{
-		struct sockaddr addr_un;
+		struct sockaddr_un addr_un;
 		struct sockaddr_in addr_in;
 		struct sockaddr_in6 addr_in6;
 	}addr;
 
 public:
-	Socket(int value_domain, int value_type, int value_protocol);
+	Socket(int value_domain, int value_type, int value_protocol, char *str, int value_port);
 	void setaddr(sockaddr *value_addr, size_t size);
 	int setbind();
-	int getsock();
-	int setlisten(int size = 5);
-	int do_read(int *mes, size_t size);
+	int getfd();
+	int setlisten(int backlog = 5);
 };
 
 #endif

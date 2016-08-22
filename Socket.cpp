@@ -5,10 +5,18 @@
 #include <unistd.h>
 #include "Socket.h"
 
-Socket::Socket(int value_domain, int value_type, int value_protocol):domain(value_domain), type(value_type), protocol(value_protocol)
+Socket::Socket(int value_domain, int value_type, int value_protocol, char *str, int value_port):domain(value_domain), type(value_type), protocol(value_protocol)
 {
 	fd = socket(domain, type, protocol);
 	memset(&addr, 0, sizeof(addr));
+	switch(domain)
+	{
+		case AF_UNIX: addr.addr_un.sun_family = value_domain; memcpy(addr.addr_un.sun_path, str, sizeof(addr.addr_un.sun_path)); break;
+		case AF_INET: addr.addr_in.sin_family = value_domain; addr.addr_in.sin_port = htons(value_port); inet_pton(value_domain, str, &(addr.addr_in.sin_addr));
+		case AF_INET6: addr.addr_in6.sin6_family = value_domain; addr.addr_in6.sin6_port = htons(value_port); inet_pton(value_domain, str, &(addr.addr_in6.sin6_addr));
+		default: return;
+	}
+
 }
 
 void Socket::setaddr(sockaddr *value_addr, size_t size)
@@ -32,30 +40,15 @@ int Socket::setbind()
 	}
 }
 
-int Socket::getsock()
+int Socket::getfd()
 {
 	return fd;
 }
 
-int Socket::setlisten(int size)
+int Socket::setlisten(int backlog)
 {
-	return listen(fd, size);
+	return listen(fd, backlog);
 }
-
-int Socket::do_read(int *mes, size_t size)
-{
-	int clifd = accept(fd, NULL, NULL);
-	if(clifd == -1)
-		return -1;
-	return read(clifd, mes, size);
-}
-
-
-
-
-
-
-
 
 
 
