@@ -1,3 +1,5 @@
+#ifndef INETADDRESS_H
+#define INETADDRESS_H
 #include <string>
 
 class inetaddress
@@ -8,3 +10,4 @@ private:
 	string address;
 	string host;
 };
+#endif //inetaddress.h
