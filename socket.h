@@ -11,9 +11,12 @@ public:
 	socket(inetaddress host, in tport);
 	inetaddress getinetaddress();
 	int getlocalport();
-	istream& getinputstream();
+	void inputstream(istream&);
 	ostream& ouputstream();
 	void close();
+
+private:
+	
 };
 
 #endif //socket.h
