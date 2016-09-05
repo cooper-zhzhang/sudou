@@ -12,7 +12,7 @@ public:
 	inetaddress getinetaddress();
 	int getlocalport();
 	void inputstream(istream&);
-	ostream& ouputstream();
+	ostream& outputstream();
 	void close();
 
 private:

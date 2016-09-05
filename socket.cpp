@@ -31,7 +31,7 @@ int socket::getlocalport()
 void socket::getinetaddress(istream&)
 {
 }
-ostream& socket::ouputstream()
+ostream& socket::outputstream()
 {
 }
 void socket::close()
