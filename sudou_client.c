@@ -19,6 +19,7 @@ int main(int argc, char **argv)
 	struct sockaddr_in seraddr;
 	seraddr.sin_family = AF_INET;
 	inet_pton(AF_INET, "127.0.0.1", &seraddr.sin_addr);
+//	inet_pton(AF_INET, "115.159.226.187", &seraddr.sin_addr);
 	seraddr.sin_port = htons(PORT);
 	if(connect(clifd, (struct sockaddr*)&seraddr, sizeof(seraddr)) == -1)
 	{
@@ -28,9 +29,10 @@ int main(int argc, char **argv)
 	for(int i = 0; i < MAX_MES; ++i)
 	{
 		scanf("%d", &mes[i]);
-		if(mes[i] > 9 || mes[i] < 1)
+		if(mes[i] > 9 || mes[i] < 0)
 		{
 			printf("error input\n");
+			exit(-1);
 			break;
 		}
 		mes[i] = htons(mes[i]);
