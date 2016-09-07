@@ -1,6 +1,7 @@
 #include <string>
 #include "user.h"
 
+User::User(std::string ValueName, std::string ValueMail, int ValueLevel, int ValueSubmit, int ValueCorrect, std::string ValuePassword):name(ValueName), mail(ValueMail), level(ValueLevel), submit(ValueSubmit), correct(ValueCorrect), password(ValuePassword){}
 std::string User::GetName()
 {
 	return name;
@@ -41,14 +42,14 @@ void User::SetSubmit(int ValueSubmit)
 	submit = ValueSubmit;
 }
 
-int User::GetRight()
+int User::GetCorrect()
 {
-	return right;
+	return correct;
 }
 
-void User::SetRight(int ValueRight)
+void User::SetCorrect(int ValueCorrect)
 {
-	right = ValueRight;
+	correct = ValueCorrect;
 }
 
 std::string User::GetPassword()

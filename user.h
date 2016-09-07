@@ -8,7 +8,8 @@ class User
 public:
 	User() = default;
 
-	//User()
+	User(std::string ValueName, std::string ValueMail, int ValueLevel, int ValueSubmit, int ValueCorrect, std::string ValuePassword);
+
 	std::string GetName();
 
 	void SetName(std::string ValueName);
@@ -25,9 +26,9 @@ public:
 
 	void SetSubmit(int ValueSubmit);
 
-	int GetRight();
+	int GetCorrect();
 
-	void SetRight(int ValueRight);
+	void SetCorrect(int ValueCorrect);
 
 	std::string GetPassword();
 
@@ -38,7 +39,7 @@ private:
 	std::string mail;
 	int level;
 	int submit;
-	int right;
+	int correct;
 	std::string password;
 };
 
