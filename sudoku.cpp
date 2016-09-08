@@ -21,6 +21,8 @@ bool Sudoku::IsSudoku()
 	for(i = 0; i < 9; ++i)
 		for(j = 0; j < 9; ++j)
 		{
+			if(Sudoku::element[i][j] == 0)
+				return false;
 			if(check(i, j, Sudoku::element[i][j]) == false)
 				return false;
 		}
