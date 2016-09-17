@@ -159,6 +159,8 @@ int main(int argc, char **argv)
 				printf("fork error\n");
 				exit(-1);
 			case 0:
+				//
+				while(1){
 				close(serfd);
 				if((num = read(clifd, mes, sizeof(int) * MAX_MES)) == -1)
 				{
@@ -184,6 +186,8 @@ int main(int argc, char **argv)
 					printf("%ld write error\n", (long)getpid());
 					exit(-1);
 				}
+			//
+		}
 				exit(0);
 			
 			default:

@@ -18,14 +18,19 @@ int main(int argc, char **argv)
 	clifd = socket(AF_INET, SOCK_STREAM, 0);
 	struct sockaddr_in seraddr;
 	seraddr.sin_family = AF_INET;
+//	inet_pton(AF_INET, "127.0.0.1", &seraddr.sin_addr);
 	inet_pton(AF_INET, "120.27.121.115", &seraddr.sin_addr);
-	//inet_pton(AF_INET, "115.159.226.187", &seraddr.sin_addr);
 	seraddr.sin_port = htons(PORT);
 	if(connect(clifd, (struct sockaddr*)&seraddr, sizeof(seraddr)) == -1)
 	{
 		printf("client connect error\n");
 		exit(-1);
 	}
+	while(1)
+	{
+	printf("please input sudoku elements\n");
+	//sleep(1);
+	//modle ture world
 	for(int i = 0; i < MAX_MES; ++i)
 	{
 		scanf("%d", &mes[i]);
@@ -56,6 +61,8 @@ int main(int argc, char **argv)
 			printf("%2d", ntohs(mes[i*9+j]));
 		}
 		printf("\n");
+	}
+		getchar();
 	}
 	return 0;
 }

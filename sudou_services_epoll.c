@@ -121,7 +121,7 @@ int main(int argc, char **argv)
 		exit(-1);
 	}
 
-	if(listen(serfd, 5) == -1)
+	if(listen(serfd, 10) == -1)
 	{
 		printf("listen error\n");
 		exit(-1);
@@ -147,7 +147,7 @@ int main(int argc, char **argv)
 
 		for(int j = 0; j < ready; ++j)
 		{
-			if(serfd == evlist[j].data.fd)
+			if(serfd == evlist[j].data.fd)//if fd is service socket serfd, will accept connection
 			{
 				clifd = accept(serfd, NULL, NULL);
 				ev.events = EPOLLIN | EPOLLOUT;
@@ -172,7 +172,7 @@ int main(int argc, char **argv)
 					printf("read() error \n");
 					exit(-1);
 				}
-				if(num == 0)
+				if(num == 0)//client socket has colsed
 				{
 					continue;
 					close(clifd);
