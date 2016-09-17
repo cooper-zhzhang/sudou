@@ -174,8 +174,8 @@ int main(int argc, char **argv)
 				}
 				if(num == 0)//client socket has colsed
 				{
-					continue;
 					close(clifd);
+					continue;
 				}
 
 				for(i = 0; i < 9; ++i)
